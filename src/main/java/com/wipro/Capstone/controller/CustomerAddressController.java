@@ -8,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @RestController
 @RequestMapping("/api/customerAddress")
 @AllArgsConstructor
@@ -30,8 +28,8 @@ public class CustomerAddressController {
     }
 
     @PutMapping("/updateCustomerAddress/{id}")
-    public ResponseEntity<Void> updateCustomerAddress(@PathVariable String id, @RequestBody CustomerAddressRequestDto CustomerAddressRequestDto){
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<CustomerAddressResponseDto> updateCustomerAddress(@PathVariable String id, @RequestBody CustomerAddressRequestDto customerAddressRequestDto){
+        return new ResponseEntity<>(customerAddressService.updateCustomerAddress(id, customerAddressRequestDto),HttpStatus.OK);
     }
 
     @GetMapping("/getCustomerAddress/{id}")

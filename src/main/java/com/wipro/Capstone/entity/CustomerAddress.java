@@ -8,7 +8,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -18,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "customerAddresses")
-public class CustomerAddress {
+public class CustomerAddress{
     @Id
     private String id;
     @NotBlank(message = "Doorno. can't be blank")
@@ -35,5 +34,4 @@ public class CustomerAddress {
     @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss.SSS",timezone = "IST")
     @LastModifiedDate
     private Date modifiedDate;
-
 }

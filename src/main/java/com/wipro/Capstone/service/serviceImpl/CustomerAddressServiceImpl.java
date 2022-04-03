@@ -1,10 +1,10 @@
 package com.wipro.Capstone.service.serviceImpl;
 
+import com.wipro.Capstone.dto.mapper.CustomerAddressMapper;
 import com.wipro.Capstone.dto.requests.CustomerAddressRequestDto;
 import com.wipro.Capstone.dto.response.CustomerAddressResponseDto;
 import com.wipro.Capstone.entity.CustomerAddress;
 import com.wipro.Capstone.exception.CustomerAddressNotFoundException;
-import com.wipro.Capstone.dto.mapper.CustomerAddressMapper;
 import com.wipro.Capstone.repository.CustomerAddressRepository;
 import com.wipro.Capstone.service.CustomerAddressService;
 import lombok.AllArgsConstructor;
@@ -29,14 +29,17 @@ public class CustomerAddressServiceImpl implements CustomerAddressService {
     }
 
     @Override
-    public CustomerAddressResponseDto updateCustomerAddress(String id) {
-        return null;
+    public CustomerAddressResponseDto updateCustomerAddress(String id, CustomerAddressRequestDto customerAddressRequestDto) {
+        CustomerAddress address = customerAddressRepository.findById(id).orElseThrow(() -> new CustomerAddressNotFoundException("No Address found with ID: " + id));
+        CustomerAddress customerAddress = customerAddressMapper.DtoToEntity(customerAddressRequestDto);
+        customerAddress.setId(id);
+        customerAddress.setCreatedDate(address.getCreatedDate());
+        return customerAddressMapper.EntityToDto(customerAddressRepository.save(customerAddress));
     }
 
     @Override
     public CustomerAddressResponseDto getCustomerAddress(String id) {
         CustomerAddress customerAddress = customerAddressRepository.findById(id).orElseThrow(() -> new CustomerAddressNotFoundException("No Address found with ID: " + id));
-        CustomerAddressResponseDto customerAddressResponseDto = customerAddressMapper.EntityToDto(customerAddress);
-        return customerAddressResponseDto;
+        return customerAddressMapper.EntityToDto(customerAddress);
     }
 }
