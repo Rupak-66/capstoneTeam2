@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerAddressResponseDto {
+    private String addressId;
     private String doorNo;
     private String streetName;
     private String layout;

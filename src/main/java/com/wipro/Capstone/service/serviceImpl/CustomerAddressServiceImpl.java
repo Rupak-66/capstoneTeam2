@@ -4,7 +4,7 @@ import com.wipro.Capstone.dto.requests.CustomerAddressRequestDto;
 import com.wipro.Capstone.dto.response.CustomerAddressResponseDto;
 import com.wipro.Capstone.entity.CustomerAddress;
 import com.wipro.Capstone.exception.CustomerAddressNotFoundException;
-import com.wipro.Capstone.mapper.CustomerAddressMapper;
+import com.wipro.Capstone.dto.mapper.CustomerAddressMapper;
 import com.wipro.Capstone.repository.CustomerAddressRepository;
 import com.wipro.Capstone.service.CustomerAddressService;
 import lombok.AllArgsConstructor;

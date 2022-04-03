@@ -1,4 +1,4 @@
-package com.wipro.Capstone.mapper;
+package com.wipro.Capstone.dto.mapper;
 
 import com.wipro.Capstone.dto.requests.CustomerAddressRequestDto;
 import com.wipro.Capstone.dto.response.CustomerAddressResponseDto;
@@ -16,6 +16,7 @@ public abstract class CustomerAddressMapper {
     })
     public abstract CustomerAddress DtoToEntity(CustomerAddressRequestDto customerAddressRequestDto);
 
+    @Mapping(target = "addressId", source = "id")
     public abstract CustomerAddressResponseDto EntityToDto(CustomerAddress customerAddress);
 
 }
