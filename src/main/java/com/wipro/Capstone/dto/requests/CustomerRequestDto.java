@@ -1,6 +1,5 @@
 package com.wipro.Capstone.dto.requests;
 
-import com.wipro.Capstone.entity.CustomerAddress;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

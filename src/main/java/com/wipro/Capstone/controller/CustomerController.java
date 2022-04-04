@@ -1,6 +1,7 @@
 package com.wipro.Capstone.controller;
 
 import com.wipro.Capstone.dto.requests.CustomerRequestDto;
+import com.wipro.Capstone.dto.response.CustomerResponseDto;
 import com.wipro.Capstone.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ public class CustomerController {
 
     @DeleteMapping("/deleteCustomer/{id}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable String id){
+        customerService.deleteCustomer(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @PutMapping("/updateCustomer/{id}")
@@ -29,8 +31,8 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/deleteCustomer/{id}")
-    public ResponseEntity<Void> searchCustomer(@PathVariable String id){
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping("/getCustomer/{id}")
+    public ResponseEntity<CustomerResponseDto> getCustomer(@PathVariable String id){
+        return new ResponseEntity<>(customerService.getCustomer(id),HttpStatus.OK);
     }
 }

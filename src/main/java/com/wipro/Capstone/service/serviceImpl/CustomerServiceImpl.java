@@ -6,6 +6,7 @@ import com.wipro.Capstone.dto.requests.CustomerRequestDto;
 import com.wipro.Capstone.dto.response.CustomerResponseDto;
 import com.wipro.Capstone.entity.Customer;
 import com.wipro.Capstone.entity.CustomerAddress;
+import com.wipro.Capstone.exception.CustomerNotFoundException;
 import com.wipro.Capstone.repository.CustomerAddressRepository;
 import com.wipro.Capstone.repository.CustomerRepository;
 import com.wipro.Capstone.service.CustomerService;
@@ -32,9 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(String id) {
-
-    }
+    public void deleteCustomer(String id) {customerAddressRepository.deleteById(id);}
 
     @Override
     public CustomerResponseDto updateCustomerAddress(String id, CustomerRequestDto customerRequestDto) {
@@ -43,6 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerResponseDto getCustomer(String id) {
-        return null;
+        Customer customer = customerRepository.findById(id).orElseThrow(()-> new CustomerNotFoundException("Customer not found with ID: "+id));
+        return customerMapper.EntityToDto(customer);
     }
 }

@@ -1,14 +1,14 @@
 package com.wipro.Capstone.dto.mapper;
 
 import com.wipro.Capstone.dto.requests.CustomerRequestDto;
+import com.wipro.Capstone.dto.response.CustomerResponseDto;
 import com.wipro.Capstone.entity.Customer;
 import com.wipro.Capstone.entity.CustomerAddress;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public abstract class CustomerMapper {
+    public CustomerAddressMapper customerAddressMapper;
 
     @Mappings({
             @Mapping(target = "id", ignore = true),
@@ -18,7 +18,11 @@ public abstract class CustomerMapper {
             @Mapping(target = "customerShippingAddress", source = "shippingAddress" )
     })
     public abstract Customer DtoToEntity(CustomerRequestDto customerAddressRequestDto, CustomerAddress billingAddress,CustomerAddress shippingAddress);
-/*
-    @Mapping(target = "addressId", source = "id")
-    public abstract CustomerResponseDto EntityToDto(Customer customerAddress);*/
+
+    @Mappings({
+            @Mapping(target = "id", source = "customer.id"),
+            @Mapping(target = "customerBillingAddress.addressId", source = "customerBillingAddress.id"),
+            @Mapping(target = "customerShippingAddress.addressId", source = "customerShippingAddress.id")
+    })
+    public abstract CustomerResponseDto EntityToDto(Customer customer);
 }
