@@ -1,9 +1,11 @@
 package com.wipro.Capstone.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.wipro.Capstone.dto.requests.CustomerRequestDto;
+import com.wipro.Capstone.dto.response.CustomerResponseDto;
 
-@Service
-@AllArgsConstructor
-public class CustomerService {
+public interface CustomerService {
+    void addCustomer(CustomerRequestDto customerRequestDto);
+    void deleteCustomer(String id);
+    CustomerResponseDto updateCustomerAddress(String id, CustomerRequestDto customerRequestDto);
+    CustomerResponseDto getCustomer(String id);
 }
