@@ -1,5 +1,6 @@
 package com.wipro.Capstone.controller;
 
+import com.wipro.Capstone.dto.requests.CustomerDetailsUpdateDto;
 import com.wipro.Capstone.dto.requests.CustomerRequestDto;
 import com.wipro.Capstone.dto.response.CustomerResponseDto;
 import com.wipro.Capstone.service.CustomerService;
@@ -27,8 +28,8 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @PutMapping("/updateCustomer/{id}")
-    public ResponseEntity<Void> updateCustomer(@PathVariable String id, @RequestBody CustomerRequestDto customerRequestDto){
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<CustomerResponseDto> updateCustomer(@PathVariable String id, @RequestBody CustomerDetailsUpdateDto customerDetailsUpdateDto){
+        return new ResponseEntity<>(customerService.updateCustomerAddress(id, customerDetailsUpdateDto),HttpStatus.OK);
     }
 
     @GetMapping("/getCustomer/{id}")

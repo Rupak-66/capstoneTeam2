@@ -2,6 +2,7 @@ package com.wipro.Capstone.service.serviceImpl;
 
 import com.wipro.Capstone.dto.mapper.CustomerAddressMapper;
 import com.wipro.Capstone.dto.mapper.CustomerMapper;
+import com.wipro.Capstone.dto.requests.CustomerDetailsUpdateDto;
 import com.wipro.Capstone.dto.requests.CustomerRequestDto;
 import com.wipro.Capstone.dto.response.CustomerResponseDto;
 import com.wipro.Capstone.entity.Customer;
@@ -33,16 +34,21 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(String id) {customerAddressRepository.deleteById(id);}
+    public void deleteCustomer(String id) {
+        customerAddressRepository.deleteById(id);
+    }
 
     @Override
-    public CustomerResponseDto updateCustomerAddress(String id, CustomerRequestDto customerRequestDto) {
-        return null;
+    public CustomerResponseDto updateCustomerAddress(String id, CustomerDetailsUpdateDto customerDetailsUpdateDto) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException("Customer not found with ID: " + id));
+        customer.setCustomerEmail(customerDetailsUpdateDto.getCustomerEmail());
+        customer.setCustomerName(customerDetailsUpdateDto.getCustomerName());
+        return customerMapper.EntityToDto(customerRepository.save(customer));
     }
 
     @Override
     public CustomerResponseDto getCustomer(String id) {
-        Customer customer = customerRepository.findById(id).orElseThrow(()-> new CustomerNotFoundException("Customer not found with ID: "+id));
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException("Customer not found with ID: " + id));
         return customerMapper.EntityToDto(customer);
     }
 }

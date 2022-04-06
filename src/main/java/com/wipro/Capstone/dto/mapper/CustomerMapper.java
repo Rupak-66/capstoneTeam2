@@ -1,5 +1,6 @@
 package com.wipro.Capstone.dto.mapper;
 
+import com.wipro.Capstone.dto.requests.CustomerDetailsUpdateDto;
 import com.wipro.Capstone.dto.requests.CustomerRequestDto;
 import com.wipro.Capstone.dto.response.CustomerResponseDto;
 import com.wipro.Capstone.entity.Customer;
@@ -8,7 +9,6 @@ import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public abstract class CustomerMapper {
-    public CustomerAddressMapper customerAddressMapper;
 
     @Mappings({
             @Mapping(target = "id", ignore = true),
