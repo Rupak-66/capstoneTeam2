@@ -9,12 +9,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "lineItems")
 public class LineItem {
-    @Id
     private String id;
     private String productId;
     private String productName;
-    private String quantity;
+    private Integer quantity;
     private Double price;
 }

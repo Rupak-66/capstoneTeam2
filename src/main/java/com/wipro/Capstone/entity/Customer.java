@@ -28,6 +28,8 @@ public class Customer {
     private CustomerAddress customerBillingAddress;
     @DBRef
     private CustomerAddress customerShippingAddress;
+    @DBRef
+    private Cart cart;
     @CreatedDate
     private Date createdDate;
     @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss.SSS",timezone = "IST")
