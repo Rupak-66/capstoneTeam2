@@ -12,6 +12,7 @@ public abstract class ProductToLineItemMapper {
     @Mappings({
            @Mapping(target = "id", ignore = true),
            @Mapping(target = "productId", source = "product.id"),
+           @Mapping(target = "productName", source = "product.productName"),
            @Mapping(target = "price", source = "product.productPrice"),
            @Mapping(target = "quantity", source = "quantity"),
     })

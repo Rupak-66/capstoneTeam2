@@ -3,7 +3,6 @@ package com.wipro.Capstone.controller;
 import com.wipro.Capstone.dto.requests.CartRequestDto;
 import com.wipro.Capstone.dto.requests.LineItemRequestDto;
 import com.wipro.Capstone.service.CartService;
-import com.wipro.Capstone.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +25,7 @@ public class CartController {
     public ResponseEntity<Void> deleteCart(@PathVariable String id){
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @PutMapping("/updateCart/{id}")
     public ResponseEntity<Void> updateCart(@PathVariable String id, @RequestBody CartRequestDto customerRequestDto){
         return new ResponseEntity<>(HttpStatus.OK);

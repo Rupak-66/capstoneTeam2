@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LineItemRequestDto {
+    private String cartId;
     private Product product;
     private Integer quantity;
 }

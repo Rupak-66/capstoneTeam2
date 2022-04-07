@@ -8,6 +8,7 @@ import com.wipro.Capstone.dto.response.CustomerResponseDto;
 import com.wipro.Capstone.entity.Customer;
 import com.wipro.Capstone.entity.CustomerAddress;
 import com.wipro.Capstone.exception.CustomerNotFoundException;
+import com.wipro.Capstone.repository.CartRepository;
 import com.wipro.Capstone.repository.CustomerAddressRepository;
 import com.wipro.Capstone.repository.CustomerRepository;
 import com.wipro.Capstone.service.CustomerService;
@@ -22,6 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerAddressRepository customerAddressRepository;
     private final CustomerAddressMapper customerAddressMapper;
+    private final CartRepository cartRepository;
 
     @Override
     public void addCustomer(CustomerRequestDto customerRequestDto) {
@@ -29,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
         CustomerAddress customerShippingAddress = customerAddressMapper.DtoToEntity(customerRequestDto.getCustomerShippingAddress());
         CustomerAddress billingAddress = customerAddressRepository.save(customerBillingAddress);
         CustomerAddress shippingAddress = customerAddressRepository.save(customerShippingAddress);
-        Customer customer = customerMapper.DtoToEntity(customerRequestDto, billingAddress, shippingAddress);
+        Customer customer = customerMapper.DtoToEntity(customerRequestDto, billingAddress, shippingAddress, cartRepository);
         customerRepository.save(customer);
     }
 

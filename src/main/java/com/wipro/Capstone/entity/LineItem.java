@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class LineItem {
     private String id;
+    private String cartId;
     private String productId;
     private String productName;
     private Integer quantity;
