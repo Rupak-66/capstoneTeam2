@@ -1,13 +1,13 @@
-package com.wipro.Capstone.dto.requests;
+package com.wipro.Capstone.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderRequestDto {
-    private String cartId;
-    private String lineItemId;
+public class OrderResponse {
+    private List<FinalItem> orderItems;
 }

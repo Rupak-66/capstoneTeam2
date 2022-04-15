@@ -18,16 +18,14 @@ public class CustomCartRepositoryImpl implements CustomCartRepository {
 
     @Override
     public void updateLineItem(LineItem lineItem) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("_id").is(lineItem.getCartId()));
+        Query query = new Query().addCriteria(Criteria.where("_id").is(lineItem.getCartId()));
         Update update = new Update().push("lineItems", lineItem);
         mongoTemplate.updateFirst(query, update, Cart.class);
     }
 
     @Override
     public void deleteLineItem(DeleteLineItemDto deleteLineItemDto) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("_id").is(deleteLineItemDto.getCartId()));
+        Query query = new Query().addCriteria(Criteria.where("_id").is(deleteLineItemDto.getCartId()));
         Update update = new Update().pull("lineItems", deleteLineItemDto.getLineItemId());
         mongoTemplate.updateFirst(query, update, Cart.class);
     }

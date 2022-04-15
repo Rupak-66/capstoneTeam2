@@ -1,6 +1,5 @@
 package com.wipro.Capstone.controller;
 
-import com.wipro.Capstone.dto.requests.CartRequestDto;
 import com.wipro.Capstone.dto.requests.LineItemRequestDto;
 import com.wipro.Capstone.service.CartService;
 import lombok.AllArgsConstructor;
@@ -26,10 +25,10 @@ public class CartController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/updateCart/{id}")
+    /*@PutMapping("/updateCart/{id}")
     public ResponseEntity<Void> updateCart(@PathVariable String id, @RequestBody CartRequestDto customerRequestDto){
         return new ResponseEntity<>(HttpStatus.OK);
-    }
+    }*/
 
     @GetMapping("/getCart/{id}")
     public ResponseEntity<Void> getCart(@PathVariable String id){
